@@ -1,0 +1,68 @@
+{
+  "posts": [
+    {
+      "id": "1",
+      "title": "a title",
+      "views": 100
+    },
+    {
+      "id": "2",
+      "title": "another title",
+      "views": 200
+    },
+    {
+      "id": "04a8",
+      "title": "a title 111",
+      "views": 101
+    },
+    {
+      "id": "de1b",
+      "title": "a title 222",
+      "views": 222
+    },
+    {
+      "id": "bf6f",
+      "title": "a title 333",
+      "views": 222
+    }
+  ],
+  "comments": [
+    {
+      "id": "1",
+      "text": "a comment about post 1",
+      "postId": "1"
+    },
+    {
+      "id": "2",
+      "text": "another comment about post 1",
+      "postId": "1"
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "pokemon": [
+    {
+      "id": "1",
+      "name": "pokemon 1",
+      "views": 100
+    },
+    {
+      "id": "2",
+      "name": "pokemon 2",
+      "views": 200
+    }
+  ],
+  "todos": [
+    {
+      "id": "76f2",
+      "task": "qe",
+      "completed": false
+    },
+    {
+      "id": "0cc7",
+      "task": "cv",
+      "completed": false
+    }
+  ]
+}

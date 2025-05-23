@@ -1,0 +1,15 @@
+.listFooter {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.todoView {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: space-between;
+
+
+  cursor: pointer;
+}

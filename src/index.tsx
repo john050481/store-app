@@ -4,12 +4,24 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { store } from './store/redux/store';
+import { Provider as ProviderRedux } from 'react-redux';
+
+import { MobxProvider } from './store/mobx';
+import { attachLogger } from 'effector-logger';
+
+attachLogger();
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <ProviderRedux store={store}>
+      <MobxProvider>
+        <App />
+      </MobxProvider>
+    </ProviderRedux>
   </React.StrictMode>
 );
 
