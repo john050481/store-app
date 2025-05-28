@@ -1,0 +1,44 @@
+.loader {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  opacity: 0.8;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &__img {
+    width: 30px;
+    height: 30px;
+    background: linear-gradient(#ccc, #ccc) padding-box, linear-gradient(to right, #ffffff, #1845c3) border-box;
+    color: #313149;
+    padding:10px;
+    border: 5px solid transparent;
+    border-radius: 50%;
+
+    animation: appLogoSpin infinite 1s linear;
+
+    &_small {
+      width: 5px;
+      height: 5px;
+      background: linear-gradient(#ccc, #ccc) padding-box, linear-gradient(to right, #ffffff, #0dc434) border-box;
+    }
+  }
+
+  &__title {
+    color: black;
+  }
+}
+
+@keyframes appLogoSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

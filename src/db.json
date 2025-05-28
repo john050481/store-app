@@ -55,14 +55,13 @@
   ],
   "todos": [
     {
-      "id": "76f2",
-      "task": "qe",
-      "completed": false
+      "id": "0ea7",
+      "task": "task 1",
+      "completed": true
     },
     {
-      "id": "0cc7",
-      "task": "cv",
-      "completed": false
+      "id": "44f9",
+      "task": "task 2"
     }
   ]
 }

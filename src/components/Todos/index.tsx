@@ -1,6 +1,7 @@
 import { FC } from 'react';
 
 import styles from './TodoList.module.scss';
+import { Loader } from 'components/Loader';
 
 type TTask = {
   id: string;
@@ -47,7 +48,7 @@ export const TodoList: FC<TTodoList> = ({
     onRefetch();
   };
 
-  if (isLoading) return <div>Loading...</div>;
+  // if (isLoading) return <div>Loading...</div>;
 
   if (isError) {
     return (
@@ -59,9 +60,10 @@ export const TodoList: FC<TTodoList> = ({
   }
 
   return (
-    <div>
+    <div className={styles.todoList}>
+      <Loader isLoading={isLoading} title="loading" />
       {getTitle()}
-      {isFetching ? ' ReFetch ...' : null}
+      <Loader isLoading={isFetching} isSmall title="refetch" />
       <hr />
       <div>
         {data?.map((todo) => (

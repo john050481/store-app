@@ -22,8 +22,8 @@ export const TodoListMobx = observer(() => {
       onRefetch={() => store.getAllTodos()}
       onAddTodo={(...rest) => store.addTodo(...rest)}
       onResetError={() => {}}
-      onChangeTodo={store.changeTodoBindAction} // bind method to the correct instance
-      onDeleteTodo={store.deleteTodoBindAction} // bind method to the correct instance
+      onChangeTodo={store.changeTodoBindAction} // changeTodoBindAction - bind method to the correct instance
+      onDeleteTodo={store.deleteTodoBindAction} // deleteTodoBindAction - bind method to the correct instance
       getTitle={() => store.report}
     />
   );

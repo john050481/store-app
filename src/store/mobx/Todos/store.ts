@@ -26,8 +26,8 @@ export class ObservableTodoStore {
       report: computed,
       getAllTodos: action,
       addTodo: action,
-      changeTodoBindAction: action.bound, // bind method to the correct instance
-      deleteTodoBindAction: action.bound, // bind method to the correct instance
+      changeTodoBindAction: action.bound, // action.bound - bind a method to the correct instance
+      deleteTodoBindAction: action.bound, // action.bound - bind a method to the correct instance
     });
     autorun(() => console.log(this.report));
   }

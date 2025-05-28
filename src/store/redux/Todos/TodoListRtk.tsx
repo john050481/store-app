@@ -10,25 +10,21 @@ import { TodoList } from 'components/Todos';
 
 export const TodoListRtk = () => {
   const { data, error, isLoading, isFetching, isError, refetch } =
-    useGetTodosQuery();
+    useGetTodosQuery(undefined, { pollingInterval: 3000 });
 
   const [
     addTodo,
-    {
-      isLoading: isLoadingAddTodo,
-      isError: isErrorAddTodo,
-      error: errorAddTodo,
-      reset,
-    },
+    { isLoading: isLoadingAdd, isError: isErrorAdd, error: errorAdd, reset },
   ] = useAddTodoMutation();
 
-  const [editTodo /* , {isLoading} */] = useEditTodoMutation();
+  const [editTodo /* , {isLoading: isLoadingEdit} */] = useEditTodoMutation();
 
-  const [deleteTodo /* , {isLoading} */] = useDeleteTodoMutation();
+  const [deleteTodo /* , {isLoading: isLoadingDelete} */] =
+    useDeleteTodoMutation();
 
   const errorMsg = [
     isError && `Error get...${getErrorMsg(error)}`,
-    isErrorAddTodo && `Error add...${getErrorMsg(errorAddTodo)}`,
+    isErrorAdd && `Error add...${getErrorMsg(errorAdd)}`,
   ]
     .filter(Boolean)
     .join('; ');
@@ -37,9 +33,9 @@ export const TodoListRtk = () => {
     <TodoList
       data={data}
       error={errorMsg}
-      isLoading={isLoading || isLoadingAddTodo}
+      isLoading={isLoading || isLoadingAdd}
       isFetching={isFetching}
-      isError={isError || isErrorAddTodo}
+      isError={isError || isErrorAdd}
       onRefetch={refetch}
       onAddTodo={addTodo}
       onResetError={reset}
