@@ -11,10 +11,7 @@ export const apiTodos = createApi({
       query: () => '/todos',
       providesTags: (result, error, arg) =>
         result
-          ? [
-              ...result.map(({ id }) => ({ type: 'Todos' as const, id })),
-              'Todos',
-            ]
+          ? [...result.map(({ id }) => ({ type: 'Todos' as const, id })), 'Todos']
           : ['Todos'],
     }),
     addTodo: build.mutation<TTask, { task: string }>({

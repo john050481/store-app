@@ -1,5 +1,7 @@
 import { FC } from 'react';
 
+import styles from './Counter.module.scss';
+
 type TCounterProps = {
   title: string;
   counter: number;
@@ -16,11 +18,13 @@ export const Counter: FC<TCounterProps> = ({
   onReset,
 }) => {
   return (
-    <div>
+    <div className={styles.counter}>
       <h4>{`${title}: ${counter}`}</h4>
-      <button onClick={onIncremented}>Increment</button>
-      <button onClick={onDecremented}>Decrement</button>
-      <button onClick={() => onReset(10)}>Reset 10</button>
+      <div className={styles.counter__buttons}>
+        <button onClick={onIncremented}>+ 1</button>
+        <button onClick={onDecremented}>- 1</button>
+        <button onClick={() => onReset(10)}>&#10227; 10</button>
+      </div>
     </div>
   );
 };

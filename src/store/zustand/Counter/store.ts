@@ -15,9 +15,7 @@ export const createCounterSlice: StateCreator<
   TCountStore
 > = (set) => ({
   count: 0,
-  inc: () =>
-    set((state) => ({ count: state.count + 1 }), undefined, 'counter:inc'),
-  dec: () =>
-    set((state) => ({ count: state.count - 1 }), undefined, 'counter:dec'),
+  inc: () => set((state) => ({ count: state.count + 1 }), undefined, 'counter:inc'),
+  dec: () => set((state) => ({ count: state.count - 1 }), undefined, 'counter:dec'),
   reset: (by) => set({ count: by }, undefined, 'counter:reset'),
 });

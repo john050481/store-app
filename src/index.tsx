@@ -12,9 +12,7 @@ import { attachLogger } from 'effector-logger';
 
 attachLogger();
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
     <ProviderRedux store={store}>

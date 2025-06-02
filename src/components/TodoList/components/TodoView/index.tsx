@@ -10,11 +10,7 @@ type TTodoView = {
   onDeleteTodo: (id: TTask['id']) => void;
 };
 
-export const TodoView: FC<TTodoView> = ({
-  todo,
-  onChangeTodo,
-  onDeleteTodo,
-}) => {
+export const TodoView: FC<TTodoView> = ({ todo, onChangeTodo, onDeleteTodo }) => {
   const onToggleCompleted = () => {
     onChangeTodo({ id: todo.id, completed: !todo.completed });
   };
@@ -45,7 +41,9 @@ export const TodoView: FC<TTodoView> = ({
         onClick={onCheckboxClick}
       />
       <span className={styles.todoView__taskTitle}>{todo.task}</span>
-      <button onClick={onDelete}>X</button>
+      <button className={styles.todoView__deleteButton} onClick={onDelete}>
+        X
+      </button>
     </div>
   );
 };

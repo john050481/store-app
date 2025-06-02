@@ -1,15 +1,19 @@
-import { observer } from 'mobx-react-lite';
 import { ProcessEnum } from '@api/types';
 import { useZustandStore } from '../store';
 import { TodoList } from 'components/TodoList';
 import { useRefetch } from 'hooks/useRefetch';
 import { useEvent } from 'hooks/useEvent';
+import { FC } from 'react';
 
-export const TodoListZustand = observer(() => {
+type TTodoListProps = {
+  refetchMS: number;
+};
+
+export const TodoListZustand: FC<TTodoListProps> = ({ refetchMS }) => {
   const store = useZustandStore();
 
   const handleRefetch = useEvent(() => store.getAllTodos()); // bind 'this'
-  const isFetching = useRefetch(handleRefetch);
+  const isFetching = useRefetch(handleRefetch, refetchMS);
 
   return (
     <TodoList
@@ -30,4 +34,4 @@ export const TodoListZustand = observer(() => {
       }
     />
   );
-});
+};

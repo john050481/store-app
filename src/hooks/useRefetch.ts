@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useEvent } from './useEvent';
-import { DEFAULT_REFETCH_MS } from '@api/constants';
 
-export const useRefetch = (onFetch: (...args: any) => Promise<any>) => {
+export const useRefetch = (
+  onFetch: (...args: any) => Promise<any>,
+  refetchMS: number
+) => {
   const [isFetching, setIsFetching] = useState(false);
 
   const handleFetch = useEvent(() => {
@@ -13,19 +15,23 @@ export const useRefetch = (onFetch: (...args: any) => Promise<any>) => {
       onFetch()
         .finally(() => setIsFetching(false))
         .catch(console.log);
-    }, DEFAULT_REFETCH_MS);
+    }, refetchMS);
 
     return intervalID;
   });
 
   useEffect(() => {
+    if (!refetchMS) {
+      return;
+    }
+
     const intervalID = handleFetch();
 
     return () => {
       clearInterval(intervalID);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [refetchMS]);
 
   return isFetching;
 };

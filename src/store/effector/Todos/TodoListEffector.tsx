@@ -1,5 +1,3 @@
-import { observer } from 'mobx-react-lite';
-
 import {
   $todos,
   addTodoEf,
@@ -14,8 +12,13 @@ import { TodoList } from 'components/TodoList';
 import { useUnit } from 'effector-react';
 import { useRefetch } from 'hooks/useRefetch';
 import { useEvent } from 'hooks/useEvent';
+import { FC } from 'react';
 
-export const TodoListEffector = observer(() => {
+type TTodoListProps = {
+  refetchMS: number;
+};
+
+export const TodoListEffector: FC<TTodoListProps> = ({ refetchMS }) => {
   const [
     todos,
     addTodo,
@@ -40,7 +43,7 @@ export const TodoListEffector = observer(() => {
     resetError();
     return getAllTodos();
   });
-  const isFetching = useRefetch(handleRefetch);
+  const isFetching = useRefetch(handleRefetch, refetchMS);
 
   return (
     <TodoList
@@ -61,4 +64,4 @@ export const TodoListEffector = observer(() => {
       }
     />
   );
-});
+};

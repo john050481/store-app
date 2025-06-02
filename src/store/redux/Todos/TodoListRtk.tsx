@@ -7,11 +7,19 @@ import {
 
 import { getErrorMsg } from './services/helpers';
 import { TodoList } from 'components/TodoList';
-import { DEFAULT_REFETCH_MS } from '@api/constants';
+import { FC } from 'react';
 
-export const TodoListRtk = () => {
-  const { data, error, isLoading, isFetching, isError, refetch } =
-    useGetTodosQuery(undefined, { pollingInterval: DEFAULT_REFETCH_MS });
+type TTodoListProps = {
+  refetchMS: number;
+};
+
+export const TodoListRtk: FC<TTodoListProps> = ({ refetchMS }) => {
+  const { data, error, isLoading, isFetching, isError, refetch } = useGetTodosQuery(
+    undefined,
+    {
+      pollingInterval: refetchMS ? refetchMS : undefined,
+    }
+  );
 
   const [
     addTodo,
@@ -20,8 +28,7 @@ export const TodoListRtk = () => {
 
   const [editTodo /* , {isLoading: isLoadingEdit} */] = useEditTodoMutation();
 
-  const [deleteTodo /* , {isLoading: isLoadingDelete} */] =
-    useDeleteTodoMutation();
+  const [deleteTodo /* , {isLoading: isLoadingDelete} */] = useDeleteTodoMutation();
 
   const errorMsg = [
     isError && `Error get...${getErrorMsg(error)}`,

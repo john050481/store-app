@@ -81,7 +81,9 @@
     "test": "node scripts/test.js",
     "json-server": "npx json-server ./src/db.json -p 3001",
     "start-all": "concurrently \"npm run start\" \"npm run json-server\"",
-    "prepare": "husky"
+    "prepare": "husky",
+    "prettierCheck": "prettier --check src/**/*.{js,ts,tsx,css,json}",
+    "prettierFormatAll": "prettier --write src/**/*.{js,ts,tsx,css,json}"
   },
   "eslintConfig": {
     "extends": [

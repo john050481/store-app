@@ -11,4 +11,9 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
+
+  &__deleteButton {
+    color: red;
+    font-weight: 800;
+  }
 }

@@ -22,13 +22,11 @@ $todos.on([deleteTodoEvent], (state, todo) =>
 $todos.on([addTodoEvent], (state, todo) => [...(state || []), todo]);
 
 // getAllTodosEf -----------------------------------------------------------------
-export const getAllTodosEf = createEffect<void, TTask[], AxiosError>(
-  async () => {
-    const res = await api.get<TTask[]>('/todos').then((res) => res.data);
+export const getAllTodosEf = createEffect<void, TTask[], AxiosError>(async () => {
+  const res = await api.get<TTask[]>('/todos').then((res) => res.data);
 
-    return res;
-  }
-);
+  return res;
+});
 getAllTodosEf.doneData.watch((todos) => setTodosEvent(todos));
 
 // addTodoEf -----------------------------------------------------------------
@@ -39,9 +37,7 @@ export const addTodoEf = createEffect<Pick<TTask, 'task'>, TTask, AxiosError>(
       completed: false,
     };
 
-    const res = await api
-      .post<TTask>('/todos', newTask)
-      .then((res) => res.data);
+    const res = await api.post<TTask>('/todos', newTask).then((res) => res.data);
 
     return res;
   }
@@ -61,9 +57,7 @@ deleteTodoEf.doneData.watch((todo) => deleteTodoEvent(todo));
 // changeTodoEf -----------------------------------------------------------------
 export const changeTodoEf = createEffect<Partial<TTask>, TTask, AxiosError>(
   async (todo) => {
-    const res = await api
-      .patch<TTask>(`/todos/${todo.id}`, todo)
-      .then((res) => res.data);
+    const res = await api.patch<TTask>(`/todos/${todo.id}`, todo).then((res) => res.data);
 
     return res;
   }

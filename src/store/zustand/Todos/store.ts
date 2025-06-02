@@ -119,11 +119,7 @@ export const createTodosSlice: StateCreator<
       })
       .catch((error) => {
         // without immer
-        set(
-          { status: ProcessEnum.FAILED, error },
-          undefined,
-          'deleteTodo: error'
-        );
+        set({ status: ProcessEnum.FAILED, error }, undefined, 'deleteTodo: error');
         return error;
       });
   },
@@ -137,9 +133,7 @@ export const createTodosSlice: StateCreator<
         set(
           (state) => {
             // immer mutation
-            const indexTodo = state.todos.findIndex(
-              (item) => item.id === todo.id
-            );
+            const indexTodo = state.todos.findIndex((item) => item.id === todo.id);
             if (indexTodo >= 0) state.todos[indexTodo] = todoRes;
             state.status = ProcessEnum.SUCCEEDED;
             state.error = null;
@@ -151,11 +145,7 @@ export const createTodosSlice: StateCreator<
       })
       .catch((error) => {
         // without immer
-        set(
-          { status: ProcessEnum.FAILED, error },
-          undefined,
-          'changeTodo: error'
-        );
+        set({ status: ProcessEnum.FAILED, error }, undefined, 'changeTodo: error');
         return error;
       });
   },
