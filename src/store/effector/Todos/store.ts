@@ -1,4 +1,4 @@
-import { createEvent, createStore, createEffect } from 'effector';
+import { createEvent, createStore, createEffect, sample } from 'effector';
 import { AxiosError } from 'axios';
 
 import { api } from '@api';
@@ -71,11 +71,25 @@ export const changeTodoEf = createEffect<Partial<TTask>, TTask, AxiosError>(
 changeTodoEf.doneData.watch((todo) => changeTodoEvent(todo));
 
 // isLoading and error-----------------------------------------------------------------
-export const $isLoading =
-  getAllTodosEf.pending ||
-  addTodoEf.pending ||
-  deleteTodoEf.pending ||
-  changeTodoEf.pending;
+export const $isLoading = createStore(false);
+const setIsLoadingEvent = createEvent<boolean>();
+$isLoading.on(setIsLoadingEvent, (_, newIsLoading) => newIsLoading);
+sample({
+  clock: [
+    getAllTodosEf.pending,
+    addTodoEf.pending,
+    deleteTodoEf.pending,
+    changeTodoEf.pending,
+  ],
+  source: [
+    getAllTodosEf.pending,
+    addTodoEf.pending,
+    deleteTodoEf.pending,
+    changeTodoEf.pending,
+  ],
+  fn: (rest) => rest.some((item) => !!item),
+  target: setIsLoadingEvent,
+});
 
 export const $error = createStore<string | null>(null);
 $error.on(
