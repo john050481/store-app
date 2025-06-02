@@ -82,5 +82,5 @@ $error.on(
   [getAllTodosEf.fail, addTodoEf.fail, deleteTodoEf.fail, changeTodoEf.fail],
   (_, { error }) => error.message
 );
-export const resetErrorEf = createEvent();
-$error.on(resetErrorEf, () => null);
+export const resetErrorEvent = createEvent();
+$error.on(resetErrorEvent, () => null);

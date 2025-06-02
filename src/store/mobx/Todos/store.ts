@@ -61,7 +61,7 @@ export class ObservableTodoStore {
     this.todos = [];
     this.status = ProcessEnum.REQUESTED;
 
-    api
+    return api
       .get<TTask[]>('/todos')
       .then((res) => res.data)
       .then(

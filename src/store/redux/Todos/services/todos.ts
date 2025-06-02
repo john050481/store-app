@@ -1,10 +1,10 @@
-import { BASE_URL } from '@api/constants';
+import { BASE_URL, DEFAULT_TIMEOUT_MS } from '@api/constants';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { TTask } from '@api/types';
 
 export const apiTodos = createApi({
   reducerPath: 'apiTodos',
-  baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
+  baseQuery: fetchBaseQuery({ baseUrl: BASE_URL, timeout: DEFAULT_TIMEOUT_MS }),
   tagTypes: ['Todos'],
   endpoints: (build) => ({
     getTodos: build.query<TTask[], void>({

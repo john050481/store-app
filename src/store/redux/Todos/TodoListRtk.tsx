@@ -7,10 +7,11 @@ import {
 
 import { getErrorMsg } from './services/helpers';
 import { TodoList } from 'components/TodoList';
+import { DEFAULT_REFETCH_MS } from '@api/constants';
 
 export const TodoListRtk = () => {
   const { data, error, isLoading, isFetching, isError, refetch } =
-    useGetTodosQuery(undefined, { pollingInterval: 3000 });
+    useGetTodosQuery(undefined, { pollingInterval: DEFAULT_REFETCH_MS });
 
   const [
     addTodo,

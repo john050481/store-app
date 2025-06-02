@@ -10,6 +10,7 @@ import { CounterMobx } from './store/mobx/Counter';
 import { TodoListRtk } from 'store/redux/Todos/TodoListRtk';
 import { TodoListZustand } from 'store/zustand/Todos/TodoListZustand';
 import { TodoListEffector } from 'store/effector/Todos/TodoListEffector';
+import { DEFAULT_REFETCH_MS, DEFAULT_TIMEOUT_MS } from '@api/constants';
 
 function App() {
   return (
@@ -25,7 +26,7 @@ function App() {
           <CounterEffector />
         </div>
 
-        <div>Todos:</div>
+        <div>{`Todos (refetch = ${DEFAULT_REFETCH_MS}ms; timeout API = ${DEFAULT_TIMEOUT_MS}ms):`}</div>
         <div className={styles.wrapperFlexCol}>
           <TodoListMobx />
           <TodoListRtk />

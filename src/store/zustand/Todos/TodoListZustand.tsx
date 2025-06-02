@@ -1,25 +1,24 @@
 import { observer } from 'mobx-react-lite';
-import { useEffect } from 'react';
-
 import { ProcessEnum } from '@api/types';
 import { useZustandStore } from '../store';
 import { TodoList } from 'components/TodoList';
+import { useRefetch } from 'hooks/useRefetch';
+import { useEvent } from 'hooks/useEvent';
 
 export const TodoListZustand = observer(() => {
   const store = useZustandStore();
 
-  useEffect(() => {
-    store.getAllTodos();
-  }, []);
+  const handleRefetch = useEvent(() => store.getAllTodos()); // bind 'this'
+  const isFetching = useRefetch(handleRefetch);
 
   return (
     <TodoList
       data={store.todos}
       error={store.error?.message || ''}
-      isLoading={store.status === ProcessEnum.REQUESTED}
-      isFetching={false}
+      isLoading={store.status === ProcessEnum.REQUESTED && !isFetching}
+      isFetching={isFetching}
       isError={store.status === ProcessEnum.FAILED}
-      onRefetch={() => store.getAllTodos()}
+      onRefetch={handleRefetch}
       onAddTodo={(...rest) => store.addTodo(...rest)}
       onResetError={() => {}}
       onChangeTodo={(...rest) => store.changeTodo(...rest)}

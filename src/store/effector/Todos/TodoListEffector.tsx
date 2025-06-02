@@ -1,5 +1,4 @@
 import { observer } from 'mobx-react-lite';
-import { useEffect } from 'react';
 
 import {
   $todos,
@@ -9,10 +8,12 @@ import {
   getAllTodosEf,
   $isLoading,
   $error,
-  resetErrorEf,
+  resetErrorEvent,
 } from './store';
 import { TodoList } from 'components/TodoList';
 import { useUnit } from 'effector-react';
+import { useRefetch } from 'hooks/useRefetch';
+import { useEvent } from 'hooks/useEvent';
 
 export const TodoListEffector = observer(() => {
   const [
@@ -32,21 +33,23 @@ export const TodoListEffector = observer(() => {
     getAllTodosEf,
     $isLoading,
     $error,
-    resetErrorEf,
+    resetErrorEvent,
   ]);
 
-  useEffect(() => {
-    getAllTodos();
-  }, []);
+  const handleRefetch = useEvent(() => {
+    resetError();
+    return getAllTodos();
+  });
+  const isFetching = useRefetch(handleRefetch);
 
   return (
     <TodoList
       data={todos || []}
       error={error || ''}
-      isLoading={isLoading}
-      isFetching={false}
+      isLoading={isLoading && !isFetching}
+      isFetching={isFetching}
       isError={!!error}
-      onRefetch={getAllTodos}
+      onRefetch={handleRefetch}
       onAddTodo={addTodo}
       onResetError={resetError}
       onChangeTodo={changeTodo}
