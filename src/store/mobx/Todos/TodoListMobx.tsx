@@ -3,7 +3,7 @@ import { useContext, useEffect } from 'react';
 import { MobxContext } from '../index';
 
 import { ProcessEnum } from '@api/types';
-import { TodoList } from 'components/Todos';
+import { TodoList } from 'components/TodoList';
 
 export const TodoListMobx = observer(() => {
   const { todoStore: store } = useContext(MobxContext);

@@ -4,3 +4,9 @@ export enum ProcessEnum {
   SUCCEEDED = 'succeeded',
   FAILED = 'failed',
 }
+
+export type TTask = {
+  id: string;
+  task: string;
+  completed: boolean;
+};

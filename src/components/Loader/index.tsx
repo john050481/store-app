@@ -15,7 +15,7 @@ export const Loader: FC<TLoader> = ({ isLoading, isSmall, title }) => {
         className={classnames(styles.loader__img, {
           [styles.loader__img_small]: isSmall,
         })}
-      ></div>
+      />
       <div className={styles.loader__title}>{title}</div>
     </div>
   ) : null;

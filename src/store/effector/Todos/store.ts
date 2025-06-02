@@ -2,12 +2,7 @@ import { createEvent, createStore, createEffect } from 'effector';
 import { AxiosError } from 'axios';
 
 import { api } from '@api';
-
-export type TTask = {
-  id: string;
-  task: string;
-  completed: boolean;
-};
+import { TTask } from '@api/types';
 
 // todos -----------------------------------------------------------------
 export const $todos = createStore<TTask[] | null>(null);

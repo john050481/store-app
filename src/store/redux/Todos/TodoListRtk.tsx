@@ -6,7 +6,7 @@ import {
 } from './services/todos';
 
 import { getErrorMsg } from './services/helpers';
-import { TodoList } from 'components/Todos';
+import { TodoList } from 'components/TodoList';
 
 export const TodoListRtk = () => {
   const { data, error, isLoading, isFetching, isError, refetch } =

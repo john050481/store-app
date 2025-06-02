@@ -4,12 +4,7 @@ import { api } from '@api';
 import { RootStore } from '../types';
 import { ProcessEnum } from '@api/types';
 import { AxiosError } from 'axios';
-
-export type TTask = {
-  id: string;
-  task: string;
-  completed: boolean;
-};
+import { TTask } from '@api/types';
 
 export type TTodosSlice = {
   todos: TTask[];

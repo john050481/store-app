@@ -1,11 +1,6 @@
 import { BASE_URL } from '@api/constants';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-
-export type TTask = {
-  id: string;
-  task: string;
-  completed: boolean;
-};
+import { TTask } from '@api/types';
 
 export const apiTodos = createApi({
   reducerPath: 'apiTodos',

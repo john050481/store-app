@@ -1,13 +1,10 @@
 import { FC } from 'react';
 
-import styles from './TodoList.module.scss';
 import { Loader } from 'components/Loader';
+import { TodoView } from './components/TodoView';
+import { TTask } from '@api/types';
 
-type TTask = {
-  id: string;
-  task: string;
-  completed: boolean;
-};
+import styles from './TodoList.module.scss';
 
 type TTodoList = {
   data: TTask[] | undefined;
@@ -48,12 +45,10 @@ export const TodoList: FC<TTodoList> = ({
     onRefetch();
   };
 
-  // if (isLoading) return <div>Loading...</div>;
-
   if (isError) {
     return (
-      <div>
-        {isError && `Error: ${error}`}
+      <div className={styles.error}>
+        {`Error: ${error}`}
         <button onClick={onReload}>Reload</button>
       </div>
     );
@@ -62,9 +57,12 @@ export const TodoList: FC<TTodoList> = ({
   return (
     <div className={styles.todoList}>
       <Loader isLoading={isLoading} title="loading" />
-      {getTitle()}
       <Loader isLoading={isFetching} isSmall title="refetch" />
+
+      {getTitle()}
+
       <hr />
+
       <div>
         {data?.map((todo) => (
           <TodoView
@@ -75,54 +73,14 @@ export const TodoList: FC<TTodoList> = ({
           />
         ))}
       </div>
+
       <hr />
+
       <div className={styles.listFooter}>
         <small> (click a title to edit)</small>
         <button onClick={onNewTodo}>New Todo</button>
         <button onClick={onReload}>Reload</button>
       </div>
-    </div>
-  );
-};
-
-type TTodoView = {
-  todo: TTask;
-  onChangeTodo(todo: Partial<TTask>): void;
-  onDeleteTodo: (id: TTask['id']) => void;
-};
-
-const TodoView: FC<TTodoView> = ({ todo, onChangeTodo, onDeleteTodo }) => {
-  const onToggleCompleted = () => {
-    onChangeTodo({ id: todo.id, completed: !todo.completed });
-  };
-
-  const onRename: React.MouseEventHandler<HTMLDivElement> = (ev) => {
-    if (ev.defaultPrevented) return;
-
-    const newName = prompt('Task name', todo.task) || todo.task;
-    onChangeTodo({ id: todo.id, task: newName });
-  };
-
-  const onDelete: React.MouseEventHandler<HTMLButtonElement> = (ev) => {
-    ev.preventDefault();
-
-    onDeleteTodo(todo.id);
-  };
-
-  const onCheckboxClick: React.MouseEventHandler<HTMLInputElement> = (ev) => {
-    ev.preventDefault();
-  };
-
-  return (
-    <div onClick={onRename} className={styles.todoView}>
-      <input
-        type="checkbox"
-        checked={todo.completed}
-        onChange={onToggleCompleted}
-        onClick={onCheckboxClick}
-      />
-      {todo.task}
-      <button onClick={onDelete}>X</button>
     </div>
   );
 };

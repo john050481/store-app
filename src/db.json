@@ -61,7 +61,13 @@
     },
     {
       "id": "44f9",
-      "task": "task 2"
+      "task": "task 2",
+      "completed": false
+    },
+    {
+      "id": "6985",
+      "task": "task 3",
+      "completed": false
     }
   ]
 }

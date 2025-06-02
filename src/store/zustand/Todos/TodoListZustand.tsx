@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 
 import { ProcessEnum } from '@api/types';
 import { useZustandStore } from '../store';
-import { TodoList } from 'components/Todos';
+import { TodoList } from 'components/TodoList';
 
 export const TodoListZustand = observer(() => {
   const store = useZustandStore();

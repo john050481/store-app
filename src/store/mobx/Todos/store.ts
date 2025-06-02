@@ -1,14 +1,8 @@
 import { action, autorun, computed, makeObservable, observable } from 'mobx';
 import { api } from '@api';
-import { ProcessEnum } from '@api/types';
+import { ProcessEnum, TTask } from '@api/types';
 
 import { AxiosError } from 'axios';
-
-export type TTask = {
-  id: string;
-  task: string;
-  completed: boolean;
-};
 
 export class ObservableTodoStore {
   rootStore: any;

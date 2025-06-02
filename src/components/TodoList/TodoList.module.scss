@@ -1,0 +1,18 @@
+.todoList {
+  position: relative;
+  min-width: 160px;
+  max-width: 200px;
+}
+
+.listFooter {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.error {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  color: red;
+}

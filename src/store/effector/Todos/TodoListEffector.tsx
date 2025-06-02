@@ -11,7 +11,7 @@ import {
   $error,
   resetErrorEf,
 } from './store';
-import { TodoList } from 'components/Todos';
+import { TodoList } from 'components/TodoList';
 import { useUnit } from 'effector-react';
 
 export const TodoListEffector = observer(() => {
